@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="XIA TAO的技术博客 | 编程学习、技术实践、问题解决方案">
+    <title>技术博客 - XIA TAO</title>
+    
+    <!-- 主样式 -->
+    <link rel="stylesheet" href="../style.css">
+    
+    <!-- 博客专用样式 -->
+    <link rel="stylesheet" href="../assets/css/components/cards.css">
+    <link rel="stylesheet" href="../assets/css/components/pagination.css">
+    <link rel="stylesheet" href="../assets/css/themes/default.css">
+    
+    <!-- 图标库 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css">
+    
+    <!-- 代码高亮（可选） -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css">
+    
+    <!-- 字体 -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 顶部导航栏 -->
+    <header class="navbar">
+        <div class="container">
+            <a href="../" class="logo">
+                <span class="logo-text">Grah</span>
+                <span class="logo-dot">.</span>
+            </a>
+            
+            <nav class="nav-menu">
+                <a href="../" class="nav-link">
+                    <i class="ri-home-3-line"></i>
+                    <span>首页</span>
+                </a>
+                <a href="./" class="nav-link active">
+                    <i class="ri-article-line"></i>
+                    <span>博客</span>
+                </a>
+                <a href="../portfolio" class="nav-link">
+                    <i class="ri-briefcase-line"></i>
+                    <span>作品集</span>
+                </a>
+                <a href="../life" class="nav-link">
+                    <i class="ri-leaf-line"></i>
+                    <span>生活</span>
+                </a>
+                <a href="../links" class="nav-link">
+                    <i class="ri-link"></i>
+                    <span>链接</span>
+                </a>
+                <a href="../about" class="nav-link">
+                    <i class="ri-user-line"></i>
+                    <span>关于</span>
+                </a>
+            </nav>
+            
+            <div class="nav-actions">
+                <button class="action-btn" id="search-btn" aria-label="搜索">
+                    <i class="ri-search-line"></i>
+                </button>
+                <button class="action-btn" id="theme-toggle" aria-label="切换主题">
+                    <i class="ri-sun-line"></i>
+                </button>
+                <button class="action-btn mobile-menu-btn" id="mobile-menu-btn" aria-label="菜单">
+                    <i class="ri-menu-line"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- 搜索模态框 -->
+    <div class="search-modal" id="search-modal">
+        <div class="search-container">
+            <div class="search-header">
+                <i class="ri-search-line"></i>
+                <input type="text" id="search-input" placeholder="搜索博客文章..." autocomplete="off">
+                <button class="close-search" id="close-search">
+                    <i class="ri-close-line"></i>
+                </button>
+            </div>
+            <div class="search-results" id="search-results">
+                <!-- 搜索结果动态填充 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 博客主内容 -->
+    <main class="container">
+        <!-- 博客头部 -->
+        <div class="blog-header">
+            <h1 class="blog-title">
+                <i class="ri-article-line"></i>
+                技术博客
+            </h1>
+            <p class="blog-subtitle">记录编程学习、技术实践和问题解决方案</p>
+            
+            <!-- 分类过滤器 -->
+            <div class="blog-filters">
+                <div class="filter-group">
+                    <button class="filter-btn active" data-filter="all">全部</button>
+                    <button class="filter-btn" data-filter="web">Web开发</button>
+                    <button class="filter-btn" data-filter="devops">DevOps</button>
+                    <button class="filter-btn" data-filter="ai">AI/ML</button>
+                    <button class="filter-btn" data-filter="tools">工具</button>
+                    <button class="filter-btn" data-filter="tutorial">教程</button>
+                </div>
+                
+                <!-- 排序选项 -->
+                <div class="sort-group">
+                    <label for="sort-select">排序:</label>
+                    <select id="sort-select" class="sort-select">
+                        <option value="newest">最新优先</option>
+                        <option value="oldest">最早优先</option>
+                        <option value="title">标题排序</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- 博客布局 -->
+        <div class="blog-layout">
+            <!-- 文章列表区域 -->
+            <div class="posts-container">
+                <!-- 文章 1 -->
+                <article class="blog-post" data-category="tools" data-date="2026-02-11">
+                    <div class="post-meta">
+                        <span class="post-date">
+                            <i class="ri-calendar-line"></i>
+                            2026年2月11日
+                        </span>
+                        <span class="post-read-time">
+                            <i class="ri-time-line"></i>
+                            阅读时间: 8分钟
+                        </span>
+                        <span class="post-category tools">Vim</span>
+                    </div>
+                    
+                    <h2 class="post-title">
+                        <a href="posts/vim-tips.html">Vim 高级技巧与配置优化</a>
+                    </h2>
+                    
+                    <p class="post-excerpt">
+                        分享我在使用 Vim 过程中积累的高效编辑技巧和个性化配置方案。包括插件管理、快捷键定制、代码片段和实用技巧，帮助您提升编辑效率...
+                    </p>
+                    
+                    <div class="post-tags">
+                        <span class="tag">编辑器</span>
+                        <span class="tag">效率</span>
+                        <span class="tag">配置</span>
+                        <span class="tag">工作流</span>
+                    </div>
+                    
+                    <div class="post-footer">
+                        <a href="posts/vim-tips.html" class="read-more">
+                            阅读全文
+                            <i class="ri-arrow-right-line"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- 文章 2 -->
+                <article class="blog-post" data-category="devops" data-date="2026-02-10">
+                    <div class="post-meta">
+                        <span class="post-date">
+                            <i class="ri-calendar-line"></i>
+                            2026年2月10日
+                        </span>
+                        <span class="post-read-time">
+                            <i class="ri-time-line"></i>
+                            阅读时间: 12分钟
+                        </span>
+                        <span class="post-category devops">Git</span>
+                    </div>
+                    
+                    <h2 class="post-title">
+                        <a href="posts/git-workflow.html">Git 工作流最佳实践与团队协作</a>
+                    </h2>
+                    
+                    <p class="post-excerpt">
+                        深入探讨 Git 在团队协作中的最佳实践，包括分支策略、代码审查流程、提交规范、冲突解决方案和自动化工具，提高团队开发效率...
+                    </p>
+                    
+                    <div class="post-tags">
+                        <span class="tag">版本控制</span>
+                        <span class="tag">协作</span>
+                        <span class="tag">最佳实践</span>
+                    </div>
+                    
+                    <div class="post-footer">
+                        <a href="posts/git-workflow.html" class="read-more">
+                            阅读全文
+                            <i class="ri-arrow-right-line"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- 文章 3 -->
+                <article class="blog-post" data-category="web" data-date="2026-02-09">
+                    <div class="post-meta">
+                        <span class="post-date">
+                            <i class="ri-calendar-line"></i>
+                            2026年2月9日
+                        </span>
+                        <span class="post-read-time">
+                            <i class="ri-time-line"></i>
+                            阅读时间: 15分钟
+                        </span>
+                        <span class="post-category web">前端</span>
+                    </div>
+                    
+                    <h2 class="post-title">
+                        <a href="posts/js-es2026.html">JavaScript ES2026 新特性前瞻与实用技巧</a>
+                    </h2>
+                    
+                    <p class="post-excerpt">
+                        探索即将到来的 JavaScript 新特性和语言发展趋势，包括管道操作符、模式匹配、私有字段、记录和元组等新特性，以及如何为未来做好准备...
+                    </p>
+                    
+                    <div class="post-tags">
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">ESNext</span>
+                        <span class="tag">新特性</span>
+                    </div>
+                    
+                    <div class="post-footer">
+                        <a href="posts/js-es2026.html" class="read-more">
+                            阅读全文
+                            <i class="ri-arrow-right-line"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- 文章 4 -->
+                <article class="blog-post" data-category="ai" data-date="2026-02-08">
+                    <div class="post-meta">
+                        <span class="post-date">
+                            <i class="ri-calendar-line"></i>
+                            2026年2月8日
+                        </span>
+                        <span class="post-read-time">
+                            <i class="ri-time-line"></i>
+                            阅读时间: 10分钟
+                        </span>
+                        <span class="post-category ai">AI</span>
+                    </div>
+                    
+                    <h2 class="post-title">
+                        <a href="posts/ai-tools.html">实用 AI 工具推荐与效率提升方案</a>
+                    </h2>
+                    
+                    <p class="post-excerpt">
+                        分享我在日常开发和学习中使用的实用 AI 工具，包括代码辅助、文档生成、图像处理、自动化脚本等，帮助您提升工作效率...
+                    </p>
+                    
+                    <div class="post-tags">
+                        <span class="tag">人工智能</span>
+                        <span class="tag">工具</span>
+                        <span class="tag">效率</span>
+                    </div>
+                    
+                    <div class="post-footer">
+                        <a href="posts/ai-tools.html" class="read-more">
+                            阅读全文
+                            <i class="ri-arrow-right-line"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- 文章 5 -->
+                <article class="blog-post" data-category="tutorial" data-date="2026-02-07">
+                    <div class="post-meta">
+                        <span class="post-date">
+                            <i class="ri-calendar-line"></i>
+                            2026年2月7日
+                        </span>
+                        <span class="post-read-time">
+                            <i class="ri-time-line"></i>
+                            阅读时间: 20分钟
+                        </span>
+                        <span class="post-category tutorial">教程</span>
+                    </div>
+                    
+                    <h2 class="post-title">
+                        <a href="posts/static-site.html">从零搭建静态博客：GitHub Pages + 自定义域名完整指南</a>
+                    </h2>
+                    
+                    <p class="post-excerpt">
+                        详细讲解如何使用 GitHub Pages 搭建个人静态博客，包括域名购买、DNS 配置、HTTPS 设置、SEO 优化和自动化部署等完整流程...
+                    </p>
+                    
+                    <div class="post-tags">
+                        <span class="tag">GitHub</span>
+                        <span class="tag">博客</span>
+                        <span class="tag">教程</span>
+                        <span class="tag">部署</span>
+                    </div>
+                    
+                    <div class="post-footer">
+                        <a href="posts/static-site.html" class="read-more">
+                            阅读全文
+                            <i class="ri-arrow-right-line"></i>
+                        </a>
+                    </div>
+                </article>
+            </div>
+            
+            <!-- 侧边栏 -->
+            <aside class="blog-sidebar">
+                <!-- 搜索框 -->
+                <div class="sidebar-widget search-widget">
+                    <h3 class="widget-title">
+                        <i class="ri-search-line"></i>
+                        搜索博客
+                    </h3>
+                    <div class="search-box">
+                        <input type="text" placeholder="输入关键词..." class="search-input">
+                        <button class="search-button">
+                            <i class
