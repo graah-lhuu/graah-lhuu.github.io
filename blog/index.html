@@ -3,56 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Grah 的技术博客 | 笔记与技术文章，按主题沉淀">
-    <title>Blog 知识库 - Grah</title>
+    <meta name="description" content="Grah 的技术博客 | 编程学习、技术实践、问题解决方案">
+    <title>技术博客 - Grah</title>
     
     <!-- 主样式 -->
     <link rel="stylesheet" href="../style.css">
     
     <!-- 博客专用样式 -->
-    <link rel="stylesheet" href="../assets/css/components/cards.css">
-    <link rel="stylesheet" href="../assets/css/themes/green.css">
+    <link rel="stylesheet" href="../assets/css/blog.css">
     
     <!-- 图标库 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css">
     
     <!-- 字体 -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
     
-    <!-- 绿黑主题样式 -->
     <style>
+        /* 蓝黑配色主题变量 */
         :root {
-            --primary-green: #10b981;
-            --primary-green-dark: #059669;
-            --primary-green-light: #34d399;
+            --primary-blue: #2563EB;
+            --primary-blue-light: #3B82F6;
+            --primary-blue-dark: #1D4ED8;
             --text-primary: #111827;
-            --text-secondary: #4b5563;
-            --bg-white: #ffffff;
-            --bg-gray-light: #f9fafb;
-            --border-color: #e5e7eb;
+            --text-secondary: #4B5563;
+            --text-muted: #6B7280;
+            --bg-gray-light: #F9FAFB;
+            --bg-gray-medium: #F3F4F6;
+            --bg-gray-dark: #E5E7EB;
+            --border-color: #D1D5DB;
         }
         
-        body {
-            background-color: var(--bg-white);
-            color: var(--text-primary);
-        }
-        
-        .navbar {
-            background-color: var(--bg-white);
-            border-bottom: 1px solid var(--border-color);
-        }
-        
-        .nav-link.active {
-            color: var(--primary-green);
-        }
-        
-        .btn-primary {
-            background-color: var(--primary-green);
-        }
-        
-        .btn-primary:hover {
-            background-color: var(--primary-green-dark);
+        [data-theme="dark"] {
+            --primary-blue: #60A5FA;
+            --primary-blue-light: #93C5FD;
+            --primary-blue-dark: #3B82F6;
+            --text-primary: #F9FAFB;
+            --text-secondary: #D1D5DB;
+            --text-muted: #9CA3AF;
+            --bg-gray-light: #1F2937;
+            --bg-gray-medium: #374151;
+            --bg-gray-dark: #4B5563;
+            --border-color: #6B7280;
         }
     </style>
 </head>
@@ -62,7 +54,7 @@
         <div class="container">
             <a href="../" class="logo">
                 <span class="logo-text">Grah</span>
-                <span class="logo-dot" style="color: var(--primary-green);">.</span>
+                <span class="logo-dot" style="color: var(--primary-blue);">.</span>
             </a>
             
             <nav class="nav-menu">
@@ -70,9 +62,9 @@
                     <i class="ri-home-3-line"></i>
                     <span>首页</span>
                 </a>
-                <a href="./" class="nav-link active">
+                <a href="./" class="nav-link active" style="color: var(--primary-blue);">
                     <i class="ri-article-line"></i>
-                    <span>Blog</span>
+                    <span>博客</span>
                 </a>
                 <a href="../portfolio" class="nav-link">
                     <i class="ri-briefcase-line"></i>
@@ -86,9 +78,16 @@
                     <i class="ri-link"></i>
                     <span>链接</span>
                 </a>
+                <a href="../about" class="nav-link">
+                    <i class="ri-user-line"></i>
+                    <span>关于</span>
+                </a>
             </nav>
             
             <div class="nav-actions">
+                <button class="action-btn" id="search-btn" aria-label="搜索">
+                    <i class="ri-search-line"></i>
+                </button>
                 <button class="action-btn" id="theme-toggle" aria-label="切换主题">
                     <i class="ri-sun-line"></i>
                 </button>
@@ -97,395 +96,947 @@
     </header>
 
     <!-- 博客主内容 -->
-    <main class="container">
-        <!-- 博客头部 -->
-        <div class="blog-header" style="margin-top: 4rem; margin-bottom: 3rem;">
-            <h1 class="blog-title" style="font-size: 2.5rem; color: var(--text-primary); margin-bottom: 0.5rem;">
-                Blog
-                <span style="color: var(--primary-green);">知识库</span>
-            </h1>
-            <p class="blog-subtitle" style="color: var(--text-secondary); font-size: 1.125rem;">
-                笔记与技术文章，按主题沉淀。
-            </p>
-        </div>
-
-        <!-- 两栏分区 -->
-        <div class="blog-sections">
-            <!-- Notes 分区 -->
-            <section class="blog-section notes-section">
-                <div class="section-header">
-                    <h2 class="section-title" style="color: var(--primary-green); font-size: 1.5rem; margin-bottom: 0.5rem;">
-                        <i class="ri-book-line"></i>
-                        Notes
-                    </h2>
-                    <p class="section-description" style="color: var(--text-secondary);">
-                        课程/基础知识/随手笔记
-                    </p>
-                </div>
-                
-                <!-- Notes 文章列表 -->
-                <div class="section-articles">
-                    <div class="article-preview">
-                        <span class="article-date" style="color: var(--text-secondary); font-size: 0.875rem;">2026-02-11</span>
-                        <h3 class="article-title">
-                            <a href="#" style="color: var(--text-primary);">
-                                01 | 二分基础（边界与不变量）
-                            </a>
-                        </h3>
-                        <p class="article-excerpt" style="color: var(--text-secondary); font-size: 0.875rem;">
-                            二分查找算法的边界条件与循环不变量的理解与应用（示例）
-                        </p>
-                        <span class="article-tag" style="background-color: var(--bg-gray-light); color: var(--primary-green); padding: 0.25rem 0.75rem; border-radius: 1rem; font-size: 0.75rem;">
-                            知识笔记
-                        </span>
-                    </div>
-                    
-                    <div class="article-preview">
-                        <span class="article-date" style="color: var(--text-secondary); font-size: 0.875rem;">2026-02-10</span>
-                        <h3 class="article-title">
-                            <a href="#" style="color: var(--text-primary);">
-                                01 | 复杂度直觉
-                            </a>
-                        </h3>
-                        <p class="article-excerpt" style="color: var(--text-secondary); font-size: 0.875rem;">
-                            对算法时间、空间复杂度的直观理解与评估方法（示例）
-                        </p>
-                        <span class="article-tag" style="background-color: var(--bg-gray-light); color: var(--primary-green); padding: 0.25rem 0.75rem; border-radius: 1rem; font-size: 0.75rem;">
-                            算法基础
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="section-footer">
-                    <a href="#" class="view-more" style="color: var(--primary-green); font-size: 0.875rem;">
-                        查看更多笔记 <i class="ri-arrow-right-line"></i>
-                    </a>
-                </div>
-            </section>
-
-            <!-- Tech 分区 -->
-            <section class="blog-section tech-section">
-                <div class="section-header">
-                    <h2 class="section-title" style="color: var(--primary-green); font-size: 1.5rem; margin-bottom: 0.5rem;">
-                        <i class="ri-code-line"></i>
-                        Tech
-                    </h2>
-                    <p class="section-description" style="color: var(--text-secondary);">
-                        工程经验与技术随笔
-                    </p>
-                </div>
-                
-                <!-- Tech 文章列表 -->
-                <div class="section-articles">
-                    <div class="article-preview">
-                        <span class="article-date" style="color: var(--text-secondary); font-size: 0.875rem;">2026-02-11</span>
-                        <h3 class="article-title">
-                            <a href="#" style="color: var(--text-primary);">
-                                React Hooks 备忘
-                            </a>
-                        </h3>
-                        <p class="article-excerpt" style="color: var(--text-secondary); font-size: 0.875rem;">
-                            React Hooks 使用中的常见模式与注意事项记录（示例）
-                        </p>
-                        <span class="article-tag" style="background-color: var(--bg-gray-light); color: var(--primary-green); padding: 0.25rem 0.75rem; border-radius: 1rem; font-size: 0.75rem;">
-                            前端开发
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="section-footer">
-                    <a href="#" class="view-more" style="color: var(--primary-green); font-size: 0.875rem;">
-                        查看更多技术文章 <i class="ri-arrow-right-line"></i>
-                    </a>
-                </div>
-            </section>
-        </div>
-
-        <!-- 最近更新 -->
-        <section class="recent-updates" style="margin-top: 4rem;">
-            <div class="section-header">
-                <h2 class="section-title" style="font-size: 1.5rem; color: var(--text-primary); margin-bottom: 1rem;">
-                    最近更新
-                </h2>
-            </div>
-            
-            <div class="updates-list">
-                <!-- 示例文章 1 -->
-                <div class="update-item">
-                    <span class="update-date" style="color: var(--text-secondary); font-size: 0.875rem; min-width: 100px;">
-                        2026-02-11
-                    </span>
-                    <span class="update-separator" style="color: var(--border-color); margin: 0 0.5rem;">·</span>
-                    <div class="update-content">
-                        <h3 class="update-title" style="font-size: 1rem; color: var(--text-primary); margin-bottom: 0.25rem;">
-                            <a href="#" style="color: inherit;">
-                                02 | 前缀和（1D/2D）（知识笔记）
-                            </a>
-                        </h3>
-                        <p class="update-excerpt" style="color: var(--text-secondary); font-size: 0.875rem;">
-                            前缀和算法的一维与二维实现原理与应用场景（示例）
-                        </p>
-                    </div>
-                </div>
-                
-                <!-- 示例文章 2 -->
-                <div class="update-item">
-                    <span class="update-date" style="color: var(--text-secondary); font-size: 0.875rem; min-width: 100px;">
-                        2026-02-11
-                    </span>
-                    <span class="update-separator" style="color: var(--border-color); margin: 0 0.5rem;">·</span>
-                    <div class="update-content">
-                        <h3 class="update-title" style="font-size: 1rem; color: var(--text-primary); margin-bottom: 0.25rem;">
-                            <a href="#" style="color: inherit;">
-                                02 | 差分数组（Difference Array）（知识笔记）
-                            </a>
-                        </h3>
-                        <p class="update-excerpt" style="color: var(--text-secondary); font-size: 0.875rem;">
-                            差分数组的原理及其在区间更新问题中的应用（示例）
-                        </p>
-                    </div>
-                </div>
-                
-                <!-- 示例文章 3 -->
-                <div class="update-item">
-                    <span class="update-date" style="color: var(--text-secondary); font-size: 0.875rem; min-width: 100px;">
-                        2026-02-11
-                    </span>
-                    <span class="update-separator" style="color: var(--border-color); margin: 0 0.5rem;">·</span>
-                    <div class="update-content">
-                        <h3 class="update-title" style="font-size: 1rem; color: var(--text-primary); margin-bottom: 0.25rem;">
-                            <a href="#" style="color: inherit;">
-                                02 | 双指针/滑动窗口（知识笔记）
-                            </a>
-                        </h3>
-                        <p class="update-excerpt" style="color: var(--text-secondary); font-size: 0.875rem;">
-                            双指针技巧与滑动窗口算法的常见模式与解题思路（示例）
-                        </p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="section-footer" style="text-align: center; margin-top: 2rem;">
-                <a href="#" class="btn btn-primary" style="background-color: var(--primary-green); color: white; padding: 0.5rem 1.5rem; border-radius: 0.375rem; font-size: 0.875rem;">
-                    查看所有文章
-                </a>
-            </div>
-        </section>
-    </main>
-
-    <!-- 页脚 -->
-    <footer class="footer" style="margin-top: 6rem; background-color: var(--bg-gray-light); border-top: 1px solid var(--border-color);">
+    <main class="blog-main">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-col">
-                    <a href="../" class="footer-logo" style="color: var(--text-primary);">Grah.</a>
-                    <p class="footer-description" style="color: var(--text-secondary); font-size: 0.875rem;">
-                        技术博客 · 知识沉淀 · 持续学习
+            <!-- 博客头部 -->
+            <header class="blog-header">
+                <div class="blog-title-section">
+                    <h1 class="blog-title">
+                        <span style="color: var(--primary-blue);">Blog</span>
+                        <span style="color: var(--text-primary); margin-left: 0.5rem;">知识库</span>
+                    </h1>
+                    <p class="blog-subtitle">
+                        笔记与技术文章，按主题沉淀。
                     </p>
-                    <div class="footer-social">
-                        <a href="https://github.com/graah-lhuu" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-                            <i class="ri-github-fill"></i>
+                </div>
+
+                <!-- 知识分类区域 -->
+                <div class="knowledge-sections">
+                    <!-- Notes 分区 -->
+                    <div class="section-card notes-section">
+                        <div class="section-icon">
+                            <i class="ri-book-line" style="color: var(--primary-blue);"></i>
+                        </div>
+                        <h3 class="section-title">Notes</h3>
+                        <p class="section-description">课程/基础知识/随手笔记</p>
+                        <div class="section-stats">
+                            <span class="stat-item">
+                                <i class="ri-file-text-line"></i>
+                                <span>12 篇文章</span>
+                            </span>
+                        </div>
+                        <a href="#notes" class="section-link">
+                            查看全部
+                            <i class="ri-arrow-right-line"></i>
+                        </a>
+                    </div>
+
+                    <!-- Tech 分区 -->
+                    <div class="section-card tech-section">
+                        <div class="section-icon">
+                            <i class="ri-code-line" style="color: var(--primary-blue);"></i>
+                        </div>
+                        <h3 class="section-title">Tech</h3>
+                        <p class="section-description">工程经验与技术随笔</p>
+                        <div class="section-stats">
+                            <span class="stat-item">
+                                <i class="ri-code-box-line"></i>
+                                <span>8 篇文章</span>
+                            </span>
+                        </div>
+                        <a href="#tech" class="section-link">
+                            查看全部
+                            <i class="ri-arrow-right-line"></i>
                         </a>
                     </div>
                 </div>
+            </header>
+
+            <!-- 最近更新 -->
+            <section class="recent-updates">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <i class="ri-history-line" style="color: var(--primary-blue);"></i>
+                        最近更新
+                    </h2>
+                    <a href="archive.html" class="view-all">
+                        查看全部
+                        <i class="ri-arrow-right-line"></i>
+                    </a>
+                </div>
+
+                <!-- 文章列表 -->
+                <div class="articles-list">
+                    <!-- 文章 1 -->
+                    <article class="article-item">
+                        <div class="article-header">
+                            <span class="article-date" style="color: var(--primary-blue);">
+                                2026-02-11
+                            </span>
+                            <span class="article-category">
+                                Notes
+                            </span>
+                        </div>
+                        <h3 class="article-title">
+                            <a href="posts/vim-tips.html">
+                                01 | 二分基础（边界与不变量）
+                                <span class="article-tag">（示例）</span>
+                            </a>
+                        </h3>
+                        <p class="article-excerpt">
+                            二分查找算法的基本原理、边界条件处理与循环不变量的理解与实践。
+                        </p>
+                        <div class="article-meta">
+                            <span class="meta-item">
+                                <i class="ri-time-line"></i>
+                                阅读时间: 8分钟
+                            </span>
+                            <span class="meta-item">
+                                <i class="ri-price-tag-3-line"></i>
+                                算法
+                            </span>
+                        </div>
+                    </article>
+
+                    <!-- 文章 2 -->
+                    <article class="article-item">
+                        <div class="article-header">
+                            <span class="article-date" style="color: var(--primary-blue);">
+                                2026-02-11
+                            </span>
+                            <span class="article-category">
+                                Notes
+                            </span>
+                        </div>
+                        <h3 class="article-title">
+                            <a href="posts/git-workflow.html">
+                                02 | 前缀和（1D/2D）
+                                <span class="article-tag">（示例）</span>
+                            </a>
+                        </h3>
+                        <p class="article-excerpt">
+                            一维与二维前缀和算法的原理、实现与应用场景，包括常见问题解析。
+                        </p>
+                        <div class="article-meta">
+                            <span class="meta-item">
+                                <i class="ri-time-line"></i>
+                                阅读时间: 12分钟
+                            </span>
+                            <span class="meta-item">
+                                <i class="ri-price-tag-3-line"></i>
+                                数据结构
+                            </span>
+                        </div>
+                    </article>
+
+                    <!-- 文章 3 -->
+                    <article class="article-item">
+                        <div class="article-header">
+                            <span class="article-date" style="color: var(--primary-blue);">
+                                2026-02-11
+                            </span>
+                            <span class="article-category">
+                                Tech
+                            </span>
+                        </div>
+                        <h3 class="article-title">
+                            <a href="posts/js-es2026.html">
+                                React Hooks 备忘
+                                <span class="article-tag">（示例）</span>
+                            </a>
+                        </h3>
+                        <p class="article-excerpt">
+                            React Hooks 使用总结、最佳实践与常见陷阱分析，包含实用代码示例。
+                        </p>
+                        <div class="article-meta">
+                            <span class="meta-item">
+                                <i class="ri-time-line"></i>
+                                阅读时间: 15分钟
+                            </span>
+                            <span class="meta-item">
+                                <i class="ri-price-tag-3-line"></i>
+                                React
+                            </span>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- 分页 -->
+                <div class="pagination">
+                    <span class="pagination-info">第 1 页，共 5 页</span>
+                    <div class="pagination-controls">
+                        <button class="pagination-btn disabled" disabled>
+                            <i class="ri-arrow-left-line"></i>
+                        </button>
+                        <button class="pagination-btn active">1</button>
+                        <button class="pagination-btn">2</button>
+                        <button class="pagination-btn">3</button>
+                        <button class="pagination-btn">4</button>
+                        <button class="pagination-btn">5</button>
+                        <button class="pagination-btn">
+                            <i class="ri-arrow-right-line"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 分类导航 -->
+            <section class="categories-section">
+                <h2 class="section-title">
+                    <i class="ri-folder-open-line" style="color: var(--primary-blue);"></i>
+                    分类浏览
+                </h2>
                 
-                <div class="footer-col">
-                    <h3 class="footer-title" style="font-size: 0.875rem; color: var(--text-primary);">分区</h3>
+                <div class="categories-grid">
+                    <a href="?category=algorithm" class="category-card">
+                        <div class="category-icon">
+                            <i class="ri-cpu-line"></i>
+                        </div>
+                        <h3 class="category-title">算法</h3>
+                        <p class="category-count">8 篇文章</p>
+                    </a>
+                    
+                    <a href="?category=data-structure" class="category-card">
+                        <div class="category-icon">
+                            <i class="ri-stack-line"></i>
+                        </div>
+                        <h3 class="category-title">数据结构</h3>
+                        <p class="category-count">6 篇文章</p>
+                    </a>
+                    
+                    <a href="?category=frontend" class="category-card">
+                        <div class="category-icon">
+                            <i class="ri-braces-line"></i>
+                        </div>
+                        <h3 class="category-title">前端开发</h3>
+                        <p class="category-count">12 篇文章</p>
+                    </a>
+                    
+                    <a href="?category=backend" class="category-card">
+                        <div class="category-icon">
+                            <i class="ri-server-line"></i>
+                        </div>
+                        <h3 class="category-title">后端开发</h3>
+                        <p class="category-count">7 篇文章</p>
+                    </a>
+                    
+                    <a href="?category=tools" class="category-card">
+                        <div class="category-icon">
+                            <i class="ri-tools-line"></i>
+                        </div>
+                        <h3 class="category-title">开发工具</h3>
+                        <p class="category-count">5 篇文章</p>
+                    </a>
+                    
+                    <a href="?category=devops" class="category-card">
+                        <div class="category-icon">
+                            <i class="ri-cloud-line"></i>
+                        </div>
+                        <h3 class="category-title">DevOps</h3>
+                        <p class="category-count">4 篇文章</p>
+                    </a>
+                </div>
+            </section>
+
+            <!-- 标签云 -->
+            <section class="tags-section">
+                <h2 class="section-title">
+                    <i class="ri-price-tag-3-line" style="color: var(--primary-blue);"></i>
+                    热门标签
+                </h2>
+                
+                <div class="tags-cloud">
+                    <a href="?tag=javascript" class="tag" style="background-color: var(--bg-gray-medium); color: var(--text-primary);">
+                        JavaScript
+                    </a>
+                    <a href="?tag=react" class="tag" style="background-color: var(--bg-gray-medium); color: var(--text-primary);">
+                        React
+                    </a>
+                    <a href="?tag=vue" class="tag" style="background-color: var(--bg-gray-medium); color: var(--text-primary);">
+                        Vue
+                    </a>
+                    <a href="?tag=algorithm" class="tag" style="background-color: var(--bg-gray-medium); color: var(--text-primary);">
+                        算法
+                    </a>
+                    <a href="?tag=git" class="tag" style="background-color: var(--bg-gray-medium); color: var(--text-primary);">
+                        Git
+                    </a>
+                    <a href="?tag=linux" class="tag" style="background-color: var(--bg-gray-medium); color: var(--text-primary);">
+                        Linux
+                    </a>
+                    <a href="?tag=database" class="tag" style="background-color: var(--bg-gray-medium); color: var(--text-primary);">
+                        数据库
+                    </a>
+                    <a href="?tag=docker" class="tag" style="background-color: var(--bg-gray-medium); color: var(--text-primary);">
+                        Docker
+                    </a>
+                    <a href="?tag=vim" class="tag" style="background-color: var(--bg-gray-medium); color: var(--text-primary);">
+                        Vim
+                    </a>
+                    <a href="?tag=python" class="tag" style="background-color: var(--bg-gray-medium); color: var(--text-primary);">
+                        Python
+                    </a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="blog-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="footer-title">技术博客</h3>
+                    <p class="footer-description">
+                        记录学习过程中的思考与实践，分享有用的技术知识。
+                    </p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 class="footer-title">分类</h3>
                     <ul class="footer-links">
-                        <li><a href="./" style="font-size: 0.875rem; color: var(--text-secondary);">Blog</a></li>
-                        <li><a href="../portfolio" style="font-size: 0.875rem; color: var(--text-secondary);">作品集</a></li>
-                        <li><a href="../life" style="font-size: 0.875rem; color: var(--text-secondary);">生活</a></li>
+                        <li><a href="?category=algorithm">算法</a></li>
+                        <li><a href="?category=data-structure">数据结构</a></li>
+                        <li><a href="?category=frontend">前端开发</a></li>
+                        <li><a href="?category=backend">后端开发</a></li>
                     </ul>
                 </div>
                 
-                <div class="footer-col">
-                    <h3 class="footer-title" style="font-size: 0.875rem; color: var(--text-primary);">博客分类</h3>
+                <div class="footer-section">
+                    <h3 class="footer-title">联系</h3>
                     <ul class="footer-links">
-                        <li><a href="#" style="font-size: 0.875rem; color: var(--text-secondary);">知识笔记</a></li>
-                        <li><a href="#" style="font-size: 0.875rem; color: var(--text-secondary);">工程经验</a></li>
-                        <li><a href="#" style="font-size: 0.875rem; color: var(--text-secondary);">技术随笔</a></li>
+                        <li><a href="mailto:your-email@example.com">发送邮件</a></li>
+                        <li><a href="https://github.com/graah-lhuu">GitHub</a></li>
+                        <li><a href="../about">关于作者</a></li>
                     </ul>
                 </div>
             </div>
             
-            <div class="footer-bottom" style="border-top: 1px solid var(--border-color); padding-top: 1.5rem; margin-top: 2rem;">
-                <p class="copyright" style="text-align: center; color: var(--text-secondary); font-size: 0.75rem;">
+            <div class="footer-bottom">
+                <p class="copyright">
                     © 2026 Grah. 保留所有权利。
+                    <span class="footer-stats">
+                        已发布 <strong>42</strong> 篇文章，最后更新于 <strong>2026-02-11</strong>
+                    </span>
+                </p>
+                <p class="footer-credits">
+                    基于图片设计重新实现，采用蓝黑配色方案
                 </p>
             </div>
         </div>
     </footer>
 
+    <!-- 返回顶部按钮 -->
+    <button class="back-to-top" id="back-to-top" aria-label="返回顶部">
+        <i class="ri-arrow-up-line"></i>
+    </button>
+
     <!-- 脚本文件 -->
     <script src="../script.js"></script>
     
-    <!-- 博客专用脚本 -->
     <script>
-        // 初始化主题切换
-        function initTheme() {
+        // 博客页面特定脚本
+        document.addEventListener('DOMContentLoaded', function() {
+            // 初始化主题
             const themeToggle = document.getElementById('theme-toggle');
-            const html = document.documentElement;
-            
-            // 检查本地存储的主题偏好
-            const savedTheme = localStorage.getItem('theme') || 'light';
-            
-            // 应用保存的主题
-            if (savedTheme === 'dark') {
-                html.setAttribute('data-theme', 'dark');
-                themeToggle.innerHTML = '<i class="ri-moon-line"></i>';
-            } else {
-                html.setAttribute('data-theme', 'light');
-                themeToggle.innerHTML = '<i class="ri-sun-line"></i>';
+            if (themeToggle) {
+                themeToggle.addEventListener('click', function() {
+                    const html = document.documentElement;
+                    const currentTheme = html.getAttribute('data-theme');
+                    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                    html.setAttribute('data-theme', newTheme);
+                    localStorage.setItem('theme', newTheme);
+                    
+                    // 更新图标
+                    const icon = this.querySelector('i');
+                    icon.className = newTheme === 'dark' ? 'ri-moon-line' : 'ri-sun-line';
+                });
             }
             
-            // 主题切换功能
-            themeToggle.addEventListener('click', () => {
-                const currentTheme = html.getAttribute('data-theme');
-                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            // 返回顶部按钮
+            const backToTop = document.getElementById('back-to-top');
+            if (backToTop) {
+                window.addEventListener('scroll', function() {
+                    if (window.scrollY > 300) {
+                        backToTop.classList.add('visible');
+                    } else {
+                        backToTop.classList.remove('visible');
+                    }
+                });
                 
-                html.setAttribute('data-theme', newTheme);
-                localStorage.setItem('theme', newTheme);
-                
-                themeToggle.innerHTML = newTheme === 'dark' ? 
-                    '<i class="ri-moon-line"></i>' : 
-                    '<i class="ri-sun-line"></i>';
-            });
-        }
-        
-        // 导航栏滚动效果
-        function initNavbarScroll() {
-            const navbar = document.querySelector('.navbar');
-            let lastScrollTop = 0;
+                backToTop.addEventListener('click', function() {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
             
-            window.addEventListener('scroll', () => {
-                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                
-                if (scrollTop > 100) {
-                    navbar.style.boxShadow = '0 1px 3px rgba(0,0,0,0.1)';
-                } else {
-                    navbar.style.boxShadow = 'none';
-                }
-                
-                lastScrollTop = scrollTop;
+            // 分页按钮交互
+            const paginationBtns = document.querySelectorAll('.pagination-btn:not(.disabled)');
+            paginationBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // 移除所有激活状态
+                    document.querySelectorAll('.pagination-btn').forEach(b => {
+                        b.classList.remove('active');
+                    });
+                    // 添加当前激活状态
+                    this.classList.add('active');
+                });
             });
-        }
-        
-        // 初始化函数
-        document.addEventListener('DOMContentLoaded', () => {
-            initTheme();
-            initNavbarScroll();
             
-            // 为所有链接添加示例提示
-            document.querySelectorAll('a[href="#"]').forEach(link => {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    alert('这是示例链接，实际使用时请替换为真实的文章地址');
+            // 分类卡片悬停效果
+            const categoryCards = document.querySelectorAll('.category-card');
+            categoryCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-4px)';
+                    this.style.boxShadow = '0 8px 25px rgba(37, 99, 235, 0.15)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                    this.style.boxShadow = '';
                 });
             });
         });
     </script>
     
-    <!-- 样式增强 -->
     <style>
-        /* 博客主布局 */
-        .blog-sections {
+        /* 博客页面特定样式 */
+        .blog-main {
+            padding: 2rem 0 4rem;
+            margin-top: 4rem;
+            min-height: calc(100vh - 200px);
+        }
+        
+        .blog-header {
+            margin-bottom: 3rem;
+        }
+        
+        .blog-title-section {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .blog-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .blog-subtitle {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* 知识分类区域 */
+        .knowledge-sections {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
-            margin-bottom: 4rem;
+            margin-bottom: 3rem;
         }
         
-        @media (max-width: 768px) {
-            .blog-sections {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        /* 分区样式 */
-        .blog-section {
-            background-color: var(--bg-white);
+        .section-card {
+            background-color: var(--bg-gray-light);
+            border-radius: 12px;
+            padding: 2rem;
             border: 1px solid var(--border-color);
-            border-radius: 0.5rem;
-            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .section-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
         
         .notes-section {
-            border-top: 4px solid var(--primary-green);
+            border-top: 4px solid var(--primary-blue);
         }
         
         .tech-section {
-            border-top: 4px solid var(--primary-green);
+            border-top: 4px solid var(--primary-blue);
         }
         
-        /* 文章预览样式 */
-        .article-preview {
-            padding: 1rem 0;
-            border-bottom: 1px solid var(--border-color);
-        }
-        
-        .article-preview:last-child {
-            border-bottom: none;
-        }
-        
-        .article-title {
-            margin-bottom: 0.5rem;
-        }
-        
-        .article-title a:hover {
-            color: var(--primary-green);
-        }
-        
-        /* 最近更新列表 */
-        .updates-list {
-            background-color: var(--bg-white);
-            border: 1px solid var(--border-color);
-            border-radius: 0.5rem;
-            overflow: hidden;
-        }
-        
-        .update-item {
+        .section-icon {
+            width: 48px;
+            height: 48px;
             display: flex;
-            align-items: flex-start;
-            padding: 1rem 1.5rem;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(37, 99, 235, 0.1);
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+        
+        .section-description {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+        
+        .section-stats {
+            margin-bottom: 1.5rem;
+        }
+        
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+        
+        .section-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary-blue);
+            font-weight: 500;
+            text-decoration: none;
+            transition: gap 0.2s ease;
+        }
+        
+        .section-link:hover {
+            gap: 0.75rem;
+        }
+        
+        /* 最近更新区域 */
+        .recent-updates {
+            margin-bottom: 4rem;
+        }
+        
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
             border-bottom: 1px solid var(--border-color);
         }
         
-        .update-item:last-child {
-            border-bottom: none;
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
         
-        .update-content {
-            flex: 1;
+        .view-all {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.875rem;
         }
         
-        .update-title a:hover {
-            color: var(--primary-green);
+        .view-all:hover {
+            gap: 0.75rem;
         }
         
-        /* 标签样式 */
-        .article-tag {
-            display: inline-block;
-            margin-top: 0.5rem;
+        /* 文章列表 */
+        .articles-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .article-item {
+            padding: 1.5rem;
+            background-color: var(--bg-gray-light);
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+        
+        .article-item:hover {
+            border-color: var(--primary-blue);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.1);
+        }
+        
+        .article-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+        
+        .article-date {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.875rem;
             font-weight: 500;
         }
         
-        /* 链接悬停效果 */
-        a:hover {
-            color: var(--primary-green);
+        .article-category {
+            background-color: var(--bg-gray-medium);
+            color: var(--text-primary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 500;
         }
         
-        /* 响应式调整 */
-        @media (max-width: 480px) {
-            .update-item {
+        .article-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+        
+        .article-title a {
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        
+        .article-title a:hover {
+            color: var(--primary-blue);
+        }
+        
+        .article-tag {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-weight: normal;
+        }
+        
+        .article-excerpt {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        
+        .article-meta {
+            display: flex;
+            gap: 1.5rem;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.375rem;
+        }
+        
+        /* 分页 */
+        .pagination {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .pagination-info {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+        
+        .pagination-controls {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .pagination-btn {
+            width: 2.5rem;
+            height: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+            background-color: var(--bg-gray-light);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.875rem;
+        }
+        
+        .pagination-btn:hover:not(.disabled) {
+            background-color: var(--bg-gray-medium);
+        }
+        
+        .pagination-btn.active {
+            background-color: var(--primary-blue);
+            color: white;
+            border-color: var(--primary-blue);
+        }
+        
+        .pagination-btn.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        /* 分类浏览 */
+        .categories-section {
+            margin-bottom: 4rem;
+        }
+        
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .category-card {
+            display: block;
+            padding: 1.5rem;
+            background-color: var(--bg-gray-light);
+            border-radius: 10px;
+            text-align: center;
+            text-decoration: none;
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+        
+        .category-card:hover {
+            border-color: var(--primary-blue);
+            transform: translateY(-4px);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.1);
+        }
+        
+        .category-icon {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(37, 99, 235, 0.1);
+            border-radius: 10px;
+            color: var(--primary-blue);
+            font-size: 1.5rem;
+        }
+        
+        .category-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .category-count {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+        
+        /* 标签云 */
+        .tags-section {
+            margin-bottom: 4rem;
+        }
+        
+        .tags-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+        }
+        
+        .tag {
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: all 0.2s ease;
+        }
+        
+        .tag:hover {
+            background-color: var(--primary-blue) !important;
+            color: white !important;
+            transform: translateY(-2px);
+        }
+        
+        /* 页脚 */
+        .blog-footer {
+            background-color: var(--bg-gray-light);
+            padding: 3rem 0;
+            border-top: 1px solid var(--border-color);
+            margin-top: 4rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-section {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .footer-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+        
+        .footer-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-size: 0.875rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: color 0.2s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary-blue);
+        }
+        
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .copyright {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+        
+        .footer-stats {
+            margin-left: 1rem;
+            padding-left: 1rem;
+            border-left: 1px solid var(--border-color);
+        }
+        
+        .footer-credits {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            opacity: 0.8;
+        }
+        
+        /* 返回顶部按钮 */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 3rem;
+            height: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: var(--primary-blue);
+            color: white;
+            border: none;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background-color: var(--primary-blue-dark);
+            transform: translateY(-4px);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .blog-title {
+                font-size: 2.5rem;
                 flex-direction: column;
+                gap: 0.5rem;
             }
             
-            .update-date {
-                margin-bottom: 0.5rem;
+            .knowledge-sections {
+                grid-template-columns: 1fr;
             }
             
-            .update-separator {
-                display: none;
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            
+            .pagination {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: stretch;
+            }
+            
+            .pagination-controls {
+                justify-content: center;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .footer-stats {
+                margin-left: 0;
+                padding-left: 0;
+                border-left: none;
+                margin-top: 0.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .blog-title {
+                font-size: 2rem;
+            }
+            
+            .article-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            
+            .article-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .categories-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .tags-cloud {
+                justify-content: center;
             }
         }
     </style>
