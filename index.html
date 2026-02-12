@@ -3,53 +3,499 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>graah-lhuu 的博客</title>
+    <meta name="description" content="XIA TAO 的个人空间 | 技术博客 | 作品集 | 生活随笔 | 资源收藏">
+    <meta name="keywords" content="博客,作品集,编程,技术,生活随笔,书评,影评">
+    <meta name="author" content="XIA TAO">
+    <title>XIA TAO | 探索、创造、记录</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+    
+    <!-- CSS 文件 -->
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/components/cards.css">
+    <link rel="stylesheet" href="assets/css/themes/default.css">
+    
+    <!-- 图标库 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css">
+    
+    <!-- 字体 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+    
+    <!-- Open Graph 元数据 -->
+    <meta property="og:title" content="Grah | 探索、创造、记录">
+    <meta property="og:description" content="个人博客，记录技术、生活和思考">
+    <meta property="og:image" content="assets/images/og-image.jpg">
+    <meta property="og:url" content="https://graah-lhuu.github.io">
 </head>
 <body>
-    <header>
+    <!-- 顶部导航栏 -->
+    <header class="navbar">
         <div class="container">
-            <h1><a href="/">graah-lhuu 的博客</a></h1>
-            <nav>
-                <a href="/">首页</a>
-                <a href="/about">关于</a>
-                <a href="/archive">归档</a>
+            <!-- Logo -->
+            <a href="/" class="logo">
+                <span class="logo-text">Grah</span>
+                <span class="logo-dot">.</span>
+            </a>
+            
+            <!-- 主菜单 -->
+            <nav class="nav-menu">
+                <a href="/" class="nav-link active">
+                    <i class="ri-home-3-line"></i>
+                    <span>首页</span>
+                </a>
+                <a href="/blog" class="nav-link">
+                    <i class="ri-article-line"></i>
+                    <span>博客</span>
+                </a>
+                <a href="/portfolio" class="nav-link">
+                    <i class="ri-briefcase-line"></i>
+                    <span>作品集</span>
+                </a>
+                <a href="/life" class="nav-link">
+                    <i class="ri-leaf-line"></i>
+                    <span>生活</span>
+                </a>
+                <a href="/links" class="nav-link">
+                    <i class="ri-link"></i>
+                    <span>链接</span>
+                </a>
+                <a href="/about" class="nav-link">
+                    <i class="ri-user-line"></i>
+                    <span>关于</span>
+                </a>
             </nav>
+            
+            <!-- 右侧功能区 -->
+            <div class="nav-actions">
+                <!-- 搜索按钮 -->
+                <button class="action-btn" id="search-btn" aria-label="搜索">
+                    <i class="ri-search-line"></i>
+                </button>
+                
+                <!-- 暗色模式切换 -->
+                <button class="action-btn" id="theme-toggle" aria-label="切换主题">
+                    <i class="ri-sun-line"></i>
+                </button>
+                
+                <!-- 移动端菜单切换 -->
+                <button class="action-btn mobile-menu-btn" id="mobile-menu-btn" aria-label="菜单">
+                    <i class="ri-menu-line"></i>
+                </button>
+            </div>
         </div>
     </header>
 
-    <main class="container">
-        <section class="welcome">
-            <h2>欢迎！👋</h2>
-            <p>这是我的个人博客，记录学习、思考和技术分享。</p>
-        </section>
+    <!-- 搜索模态框 -->
+    <div class="search-modal" id="search-modal">
+        <div class="search-container">
+            <div class="search-header">
+                <i class="ri-search-line"></i>
+                <input type="text" id="search-input" placeholder="搜索博客文章、项目..." autocomplete="off">
+                <button class="close-search" id="close-search">
+                    <i class="ri-close-line"></i>
+                </button>
+            </div>
+            <div class="search-results" id="search-results">
+                <!-- 搜索结果会动态填充 -->
+            </div>
+        </div>
+    </div>
 
-        <section class="posts">
-            <h2><i class="fas fa-feather-alt"></i> 最新文章</h2>
-            <div class="post-list">
-                <!-- 文章列表会通过JavaScript动态生成 -->
-                <div id="posts-container">正在加载文章...</div>
+    <!-- 英雄区域 -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="gradient-text">探索、创造、</span><br>
+                    <span class="typewriter" id="typewriter"></span>
+                </h1>
+                <p class="hero-description">
+                    这里是 XIA TAO 的个人空间，记录技术探索、项目实践、生活思考和资源收藏。<br>
+                    始于 2026 年，不断成长中...
+                </p>
+                <div class="hero-actions">
+                    <a href="/blog" class="btn btn-primary">
+                        <i class="ri-book-open-line"></i>
+                        阅读博客
+                    </a>
+                    <a href="/portfolio" class="btn btn-secondary">
+                        <i class="ri-gallery-line"></i>
+                        查看作品
+                    </a>
+                </div>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number" id="blog-count">0</span>
+                    <span class="stat-label">篇博客</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="project-count">0</span>
+                    <span class="stat-label">个项目</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="book-count">0</span>
+                    <span class="stat-label">本书</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="link-count">0</span>
+                    <span class="stat-label">个链接</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 主要内容区域 -->
+    <main class="container">
+        <!-- 四宫格功能区域 -->
+        <section class="sections-section">
+            <h2 class="section-title">
+                <i class="ri-grid-fill"></i>
+                探索空间
+            </h2>
+            <p class="section-description">选择你感兴趣的领域，开始探索</p>
+            
+            <div class="sections-grid">
+                <!-- 博客区块 -->
+                <article class="section-card blog-card">
+                    <div class="card-icon">
+                        <i class="ri-article-line"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">技术博客</h3>
+                        <p class="card-description">
+                            记录编程学习、技术实践、工具使用和问题解决方案。
+                            包括 Web 开发、系统设计、算法等主题。
+                        </p>
+                        <div class="card-stats">
+                            <span class="card-stat">
+                                <i class="ri-file-text-line"></i>
+                                <span>最近更新: <strong id="blog-latest">-</strong></span>
+                            </span>
+                            <span class="card-stat">
+                                <i class="ri-price-tag-3-line"></i>
+                                <span>标签: <strong>8</strong></span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <a href="/blog" class="card-link">浏览全部 <i class="ri-arrow-right-line"></i></a>
+                        <a href="/blog?category=latest" class="card-btn">最新文章</a>
+                    </div>
+                </article>
+
+                <!-- 作品集区块 -->
+                <article class="section-card portfolio-card">
+                    <div class="card-icon">
+                        <i class="ri-briefcase-line"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">作品集</h3>
+                        <p class="card-description">
+                            展示个人项目、学术论文、荣誉奖项和简历。
+                            包含代码仓库、演示链接和技术栈说明。
+                        </p>
+                        <div class="card-stats">
+                            <span class="card-stat">
+                                <i class="ri-github-fill"></i>
+                                <span>项目: <strong>5</strong></span>
+                            </span>
+                            <span class="card-stat">
+                                <i class="ri-award-line"></i>
+                                <span>荣誉: <strong>3</strong></span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <a href="/portfolio" class="card-link">查看作品 <i class="ri-arrow-right-line"></i></a>
+                        <a href="/portfolio/resume" class="card-btn">我的简历</a>
+                    </div>
+                </article>
+
+                <!-- 生活区块 -->
+                <article class="section-card life-card">
+                    <div class="card-icon">
+                        <i class="ri-leaf-line"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">生活随笔</h3>
+                        <p class="card-description">
+                            书评、影评、随笔杂文和生活思考。
+                            记录阅读的书籍、观看的电影和个人感悟。
+                        </p>
+                        <div class="card-stats">
+                            <span class="card-stat">
+                                <i class="ri-book-line"></i>
+                                <span>书籍: <strong>12</strong></span>
+                            </span>
+                            <span class="card-stat">
+                                <i class="ri-movie-2-line"></i>
+                                <span>影评: <strong>8</strong></span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <a href="/life" class="card-link">探索生活 <i class="ri-arrow-right-line"></i></a>
+                        <a href="/life/books" class="card-btn">书单列表</a>
+                    </div>
+                </article>
+
+                <!-- 链接区块 -->
+                <article class="section-card links-card">
+                    <div class="card-icon">
+                        <i class="ri-link"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">链接收藏</h3>
+                        <p class="card-description">
+                            友情链接、开发工具、学习资源和实用网站。
+                            精心整理的优质资源，持续更新中。
+                        </p>
+                        <div class="card-stats">
+                            <span class="card-stat">
+                                <i class="ri-user-3-line"></i>
+                                <span>友链: <strong>6</strong></span>
+                            </span>
+                            <span class="card-stat">
+                                <i class="ri-tools-line"></i>
+                                <span>资源: <strong>24</strong></span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <a href="/links" class="card-link">浏览链接 <i class="ri-arrow-right-line"></i></a>
+                        <a href="/links/resources" class="card-btn">资源导航</a>
+                    </div>
+                </article>
             </div>
         </section>
 
-        <section class="about-preview">
-            <h2><i class="fas fa-user"></i> 关于我</h2>
-            <p>正在学习编程和技术的探索者。</p>
-            <a href="/about" class="btn">了解更多</a>
+        <!-- 最新内容展示 -->
+        <section class="latest-section">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="ri-fire-fill"></i>
+                    最新动态
+                </h2>
+                <a href="/archive" class="view-all">查看全部 <i class="ri-arrow-right-line"></i></a>
+            </div>
+            
+            <div class="latest-grid">
+                <!-- 最新博客文章 -->
+                <div class="latest-card">
+                    <div class="latest-header">
+                        <h3 class="latest-title">最新博客</h3>
+                        <span class="latest-badge">📝 技术</span>
+                    </div>
+                    <div class="latest-content" id="latest-blogs">
+                        <!-- 通过JS动态加载 -->
+                        <div class="loading">加载中...</div>
+                    </div>
+                </div>
+                
+                <!-- 最新书评 -->
+                <div class="latest-card">
+                    <div class="latest-header">
+                        <h3 class="latest-title">最近阅读</h3>
+                        <span class="latest-badge">📚 书评</span>
+                    </div>
+                    <div class="latest-content" id="latest-books">
+                        <div class="loading">加载中...</div>
+                    </div>
+                </div>
+                
+                <!-- 最近更新 -->
+                <div class="latest-card">
+                    <div class="latest-header">
+                        <h3 class="latest-title">站点更新</h3>
+                        <span class="latest-badge">🔄 动态</span>
+                    </div>
+                    <div class="latest-content" id="latest-updates">
+                        <div class="update-item">
+                            <span class="update-date">2026-02-11</span>
+                            <span class="update-text">完成博客重构</span>
+                        </div>
+                        <div class="update-item">
+                            <span class="update-date">2026-02-10</span>
+                            <span class="update-text">添加Vim教程</span>
+                        </div>
+                        <div class="update-item">
+                            <span class="update-date">2026-02-09</span>
+                            <span class="update-text">建立GitHub仓库</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 关于我 -->
+        <section class="about-section">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2 class="section-title">
+                        <i class="ri-user-smile-line"></i>
+                        关于我
+                    </h2>
+                    <p class="about-description">
+                        你好，我是 <strong>XIA TAO</strong>，一个对技术和生活充满热情的学习者。
+                        我相信持续学习、实践和分享的力量。
+                    </p>
+                    <p class="about-description">
+                        这个博客是我记录学习历程、分享知识见解、展示项目成果的个人空间。
+                        希望这里的内容能对你有所启发。
+                    </p>
+                    <div class="about-tags">
+                        <span class="about-tag">🎓 终身学习者</span>
+                        <span class="about-tag">💻 技术爱好者</span>
+                        <span class="about-tag">📖 阅读爱好者</span>
+                        <span class="about-tag">✍️ 记录者</span>
+                    </div>
+                    <div class="about-actions">
+                        <a href="/about" class="btn btn-outline">
+                            <i class="ri-information-line"></i>
+                            了解更多
+                        </a>
+                        <a href="mailto:your-email@example.com" class="btn btn-ghost">
+                            <i class="ri-mail-line"></i>
+                            联系我
+                        </a>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <!-- 占位图，可以用你的头像替换 -->
+                    <div class="avatar-placeholder">
+                        <i class="ri-user-3-line"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 技能标签 -->
+        <section class="skills-section">
+            <h2 class="section-title">
+                <i class="ri-tools-fill"></i>
+                技术栈
+            </h2>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3 class="skill-category-title">前端</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">HTML5</span>
+                        <span class="skill-tag">CSS3</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">Vue.js</span>
+                        <span class="skill-tag">React</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3 class="skill-category-title">后端</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Go</span>
+                        <span class="skill-tag">MySQL</span>
+                        <span class="skill-tag">MongoDB</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3 class="skill-category-title">工具</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">Vim</span>
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">VS Code</span>
+                        <span class="skill-tag">Linux</span>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
 
-    <footer>
+    <!-- 页脚 -->
+    <footer class="footer">
         <div class="container">
-            <p>© 2026 graah-lhuu. 由 GitHub Pages 驱动</p>
-            <div class="social">
-                <a href="https://github.com/graah-lhuu"><i class="fab fa-github"></i></a>
-                <a href="mailto:你的邮箱15168493961@163.com"><i class="fas fa-envelope"></i></a>
+            <div class="footer-content">
+                <div class="footer-col">
+                    <a href="/" class="footer-logo">Grah.</a>
+                    <p class="footer-description">
+                        个人博客，记录探索的足迹。<br>
+                        始于 2026，持续更新中。
+                    </p>
+                    <div class="footer-social">
+                        <a href="https://github.com/graah-lhuu" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                            <i class="ri-github-fill"></i>
+                        </a>
+                        <a href="15168493961@163.com" class="social-link" aria-label="Email">
+                            <i class="ri-mail-fill"></i>
+                        </a>
+                        <a href="/feed.xml" class="social-link" aria-label="RSS">
+                            <i class="ri-rss-fill"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3 class="footer-title">探索</h3>
+                    <ul class="footer-links">
+                        <li><a href="/blog">技术博客</a></li>
+                        <li><a href="/portfolio">作品集</a></li>
+                        <li><a href="/life">生活随笔</a></li>
+                        <li><a href="/links">链接收藏</a></li>
+                        <li><a href="/archive">文章归档</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3 class="footer-title">资源</h3>
+                    <ul class="footer-links">
+                        <li><a href="/links/resources">工具推荐</a></li>
+                        <li><a href="/links/friends">友情链接</a></li>
+                        <li><a href="/sitemap">站点地图</a></li>
+                        <li><a href="/feed.xml">RSS订阅</a></li>
+                        <li><a href="/privacy">隐私政策</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3 class="footer-title">联系</h3>
+                    <ul class="footer-links">
+                        <li><a href="/about">关于我</a></li>
+                        <li><a href="mailto:15168493961@163.com">发送邮件</a></li>
+                        <li><a href="/guestbook">留言板</a></li>
+                        <li><a href="/donate">支持我</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p class="copyright">
+                    © 2026 <strong>XIA TAO</strong>. 保留所有权利。
+                    <span class="footer-stats">
+                        <span id="visit-count">0</span> 次访问
+                    </span>
+                </p>
+                <p class="footer-credits">
+                    由 <strong>GitHub Pages</strong> 驱动
+                    <span class="separator">•</span>
+                    主题: <strong>Neo Space</strong>
+                </p>
             </div>
         </div>
     </footer>
 
+    <!-- 返回顶部按钮 -->
+    <button class="back-to-top" id="back-to-top" aria-label="返回顶部">
+        <i class="ri-arrow-up-line"></i>
+    </button>
+
+    <!-- 脚本文件 -->
     <script src="script.js"></script>
+    <script src="assets/js/utils/theme.js"></script>
+    <script src="assets/js/utils/search.js"></script>
+    <script src="assets/js/components/typewriter.js"></script>
 </body>
 </html>
